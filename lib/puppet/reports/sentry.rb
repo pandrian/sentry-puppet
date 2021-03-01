@@ -1,4 +1,4 @@
-require 'hiera_puppet'
+require 'hiera'
 require 'puppet'
 
 begin
@@ -23,7 +23,7 @@ Puppet::Reports.register_report(:sentry) do
             return
         end
 
-        config = HieraPuppet.lookup('sentry', {}, self, nil, :priority)
+        config = hiera.lookup('sentry', {}, self, nil, :priority)
 
         # Check the config contains what we need
         if not config[:dsn]
