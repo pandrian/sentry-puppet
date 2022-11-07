@@ -14,6 +14,14 @@ rescue LoadError => e
     Puppet.err "You need the `sentry-raven` gem installed on the puppetmaster to send reports to Sentry"
 end
 
+# Those are the log levels used by Puppet::Util::Log
+# @levels = [:debug,:info,:notice,:warning,:err,:alert,:emerg,:crit] 
+# (https://github.com/puppetlabs/puppet/blob/3f1bbd2ec31bc7be8a7626c23de8089ee638bad4/lib/puppet/util/log.rb#L16)
+
+# Those are the log levels we want to have alerts for:
+# Nothing that is less that :info should go to Sentry
+alert_on = [:warning,:err,:alert,:emerg,:crit]
+
 Puppet::Reports.register_report(:sentry) do
     # Description
     desc = 'Puppet reporter designed to send failed runs to a sentry server'
@@ -68,7 +76,7 @@ Puppet::Reports.register_report(:sentry) do
        # Get the important looking stuff to sentry
        # pp self
        self.logs.each do |log|
-           if log.level.to_s == 'err'
+           if alert_on.include? log.level
                  Raven.captureMessage(log.message, {
                    :server_name => @host,
                    :tags => {
