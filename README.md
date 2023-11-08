@@ -1,15 +1,15 @@
-sentry-puppet
-=============
+# sentry-puppet
+
 Puppet reporter designed to send failed runs to a sentry server
 
-Dependencies
-------------
+## Dependencies
+
 * Puppet
 * RubyGems
 * sentry-raven Gem
 
-Usage
------
+## Usage
+
 1. `yum install rubygems`
 2. `gem install sentry-raven`
 3. `git clone https://github.com/DamianZaremba/sentry-puppet.git /etc/puppet/<environment>/modules/sentry/`
@@ -30,12 +30,12 @@ Usage
 
 6. Do a puppet run
 
-Screenshot
----------
-![](https://github.com/DamianZaremba/sentry-puppet/raw/master/screenshot.png)
+## Screenshot
 
-License
--------
+![Screenshot](https://github.com/DamianZaremba/sentry-puppet/raw/master/screenshot.png)
+
+## License
+
 Copyright 2012 Damian Zaremba
 
 sentry-puppet is free software: you can redistribute it and/or modify
