@@ -10,7 +10,7 @@ end
 begin
     require 'sentry-ruby'
 rescue LoadError => e
-    Puppet.err "You need the `sentry-raven` gem installed on the puppetmaster to send reports to Sentry"
+    Puppet.err "You need the `sentry-ruby` gem installed on the puppetmaster to send reports to Sentry"
 end
 
 Puppet::Reports.register_report(:sentry) do
